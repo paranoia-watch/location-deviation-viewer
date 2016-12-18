@@ -20,11 +20,36 @@
   </head>
   <body>
     <div class="vertical-section-container centered">
-      <h3>Basic location-deviation-viewer demo</h3>
+      <h3>Last Hour Deviation From Average</h3>
       <demo-snippet>
-        <template>
-          <location-deviation-viewer></location-deviation-viewer>
+        <template is="dom-bind" id="demo" socket-data="{{socketData}}">
+          <location-deviation-viewer
+            title="Last Hour Deviation From Average"
+            socket-data="[[socketData]]"
+            display-key="deviationPercentage"
+          ></location-deviation-viewer>
         </template>
+        <script>
+          demo.addEventListener('dom-change', function() {
+            demo.socketData = {"Amsterdam": {"allTime": {"averageWeight": 7.762771057728888,"startTime": "2016-01-01T00:00:00","endTime": "2016-12-18T06:26:53"},"lastHour": {"averageWeight": 29.97669302659962,"startTime": "2016-12-18T06:26:53","endTime": "2016-12-18T07:26:53"},"deviationPercentage": 286.1596948264212},"Paris": {"allTime": {"averageWeight": 25.486545497823975,"startTime": "2016-01-01T00:00:00","endTime": "2016-12-18T06:26:53"},"lastHour": {"averageWeight": 51.031514271891645,"startTime": "2016-12-18T06:26:53","endTime": "2016-12-18T07:26:53"},"deviationPercentage": 100.2292318362592},"Berlin": {"allTime": {"averageWeight": 22.96921021296395,"startTime": "2016-01-01T00:00:00","endTime": "2016-12-18T06:26:53"},"lastHour": {"averageWeight": 107.41650349650357,"startTime": "2016-12-18T06:26:53","endTime": "2016-12-18T07:26:53"},"deviationPercentage": 367.65431854455795}}
+          })
+        </script>
+      </demo-snippet>
+
+      <h3>Last Hour Growth</h3>
+      <demo-snippet>
+        <template is="dom-bind" id="demoTwo" socket-data="{{socketData}}">
+          <location-deviation-viewer
+            title="Last Hour Growth"
+            socket-data="[[socketData]]"
+            display-key="growth"
+          ></location-deviation-viewer>
+        </template>
+        <script>
+          demoTwo.addEventListener('dom-change', function() {
+            demoTwo.socketData = {"Amsterdam":{"lastHour":448.63692307692304,"now":6404.196923076934,"growth":1327.478790455879},"Paris":{"lastHour":4663.501538461533,"now":16061.055384615389,"growth":244.3990583503454},"Berlin":{"lastHour":57.83692307692307,"now":7076.292307692311,"growth":12134.904506038203}}
+          })
+        </script>
       </demo-snippet>
     </div>
   </body>

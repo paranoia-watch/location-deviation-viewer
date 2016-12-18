@@ -115,7 +115,7 @@
           <option value="Berlin">Berlin</option>
           <option value="Paris">Paris</option>
         </select>
-        <h1>Last Hour Deviation From Average</h1>
+        <h1>[[title]]</h1>
       </nav>
 
     </header>
@@ -134,14 +134,22 @@
       is: 'location-deviation-viewer',
 
       properties: {
+
+        title: {
+          type: String
+        },
+
         socketData: {
-          type: Object,
-          value: {"Amsterdam": {"allTime": {"averageWeight": 7.7806419845289225,"startTime": "2016-01-01T00:00:00","endTime": "2016-12-16T19:24:22"},"lastHour": {"averageWeight": 3.744332727639809,"startTime": "2016-12-16T19:24:22","endTime": "2016-12-16T20:24:22"},"deviationPercentage": -51.87630101622638},"Paris": {"allTime": {"averageWeight": 25.728447108700784,"startTime": "2016-01-01T00:00:00","endTime": "2016-12-16T19:24:22"},"lastHour": {"averageWeight": 12.991049615994141,"startTime": "2016-12-16T19:24:22","endTime": "2016-12-16T20:24:22"},"deviationPercentage": -49.50705901095422},"Berlin": {"allTime": {"averageWeight": 22.96252649891658,"startTime": "2016-01-01T00:00:00","endTime": "2016-12-16T19:24:22"},"lastHour": {"averageWeight": 3.1497333333333337,"startTime": "2016-12-16T19:24:22","endTime": "2016-12-16T20:24:22"},"deviationPercentage": -86.28315863464788}}
+          type: Object
         },
 
         percentage: {
           type: Array,
-          computed: '_computePercentage(selectedLocation, socketData.*)'
+          computed: '_computePercentage(selectedLocation, socketData.*, displayKey)'
+        },
+
+        displayKey: {
+          type: String
         },
 
         backgroundColor: {
@@ -186,9 +194,11 @@
         this.selectedLocation = evt.target.value;
       },
 
-      _computePercentage: function(selectedLocation, socketDataChange) {
+      _computePercentage: function(selectedLocation, socketDataChange, displayKey) {
         var socketData = socketDataChange.base;
-        return parseFloat(socketData[selectedLocation].deviationPercentage.toFixed(1));
+        if(!displayKey || !selectedLocation || !socketData) return;
+        if(!socketData[selectedLocation] || !socketData[selectedLocation][displayKey]) return;
+        return parseFloat(socketData[selectedLocation][displayKey].toFixed(1));
       },
 
       _computeBackgroundColor: function(percentage) {
