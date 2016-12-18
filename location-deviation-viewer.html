@@ -135,6 +135,14 @@
 
       properties: {
 
+        socketServerUrl: {
+          type: String
+        },
+
+        listenTo: {
+          type: String
+        },
+
         title: {
           type: String
         },
@@ -180,6 +188,27 @@
           type: Boolean,
           computed: '_computeSelectedLocationIsParis(selectedLocation)'
         },
+
+      },
+
+      observers: [
+        '_initSocket(socketServerUrl, listenTo)'
+      ],
+
+      _initSocket: function(socketServerUrl, listenTo) {
+
+        var head = document.getElementsByTagName('head')[0];
+        var js = document.createElement("script");
+        js.type = "text/javascript";
+        js.src = socketServerUrl + "/socket.io/socket.io.js";
+        js.onload = (function() {
+          var socket = io(socketServerUrl);
+          socket.on(listenTo, (function (data) {
+            this.set('socketData', data);
+          }).bind(this));          
+        }).bind(this);
+
+        head.appendChild(js);
 
       },
 

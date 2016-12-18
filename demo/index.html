@@ -25,16 +25,12 @@
         <template is="dom-bind" id="demo" socket-data="{{socketData}}">
           <location-deviation-viewer
             title="Last Hour Deviation From Average"
-            socket-data="[[socketData]]"
+            socket-server-url="http://localhost:4000"
+            listen-to="last-hour-deviation"
             first-key="lastHour"
             second-key="allTime"
           ></location-deviation-viewer>
         </template>
-        <script>
-          demo.addEventListener('dom-change', function() {
-            demo.socketData = {"lastHour": {"Berlin": {"averageWeight": 31.466508330379305,"totalWeight": 6828.232307692309,"startDate": "2016-12-17T09:18:52","endDate": "2016-12-17T10:18:52","startTime": "0918","endTime": "1018"},"Amsterdam": {"averageWeight": 5.066283542039363,"totalWeight": 3485.6030769230815,"startDate": "2016-12-17T09:18:52","endDate": "2016-12-17T10:18:52","startTime": "0918","endTime": "1018"},"Paris": {"averageWeight": 9.009034369885448,"totalWeight": 5927.944615384625,"startDate": "2016-12-17T09:18:52","endDate": "2016-12-17T10:18:52","startTime": "0918","endTime": "1018"}},"allTime": {"Berlin": {"averageWeight": 28.8828074059937,"totalWeight": 232795.42769230923,"startDate": "2016-01-01T00:00:00","endDate": "2016-12-17T09:18:52","startTime": "0918","endTime": "1018"},"Paris": {"averageWeight": 33.735988901530625,"totalWeight": 1439413.438461607,"startDate": "2016-01-01T00:00:00","endDate": "2016-12-17T09:18:52","startTime": "0918","endTime": "1018"},"Amsterdam": {"averageWeight": 8.431266306164867,"totalWeight": 211447.7276923087,"startDate": "2016-01-01T00:00:00","endDate": "2016-12-17T09:18:52","startTime": "0918","endTime": "1018"}}}
-          })
-        </script>
       </demo-snippet>
 
       <h3>Last Hour Growth</h3>
@@ -42,16 +38,12 @@
         <template is="dom-bind" id="demoTwo" socket-data="{{socketData}}">
           <location-deviation-viewer
             title="Last Hour Growth"
-            socket-data="[[socketData]]"
+            socket-server-url="http://localhost:4000"
+            listen-to="last-hour-growth"
             first-key="now"
             second-key="lastHour"
           ></location-deviation-viewer>
         </template>
-        <script>
-          demoTwo.addEventListener('dom-change', function() {
-            demoTwo.socketData = {"now": {"Berlin": {"averageWeight": 14.378139768727998,"totalWeight": 4399.710769230767,"startDate": "2016-12-17T09:53:12","endDate": "2016-12-17T10:53:12"},"Amsterdam": {"averageWeight": 9.428938461538467,"totalWeight": 7543.150769230773,"startDate": "2016-12-17T09:53:12","endDate": "2016-12-17T10:53:12"},"Paris": {"averageWeight": 12.373891524025572,"totalWeight": 9230.923076923076,"startDate": "2016-12-17T09:53:12","endDate": "2016-12-17T10:53:12"}},"lastHour": {"Berlin": {"averageWeight": 41.54850368809267,"totalWeight": 12132.163076923061,"startDate": "2016-12-17T08:53:12","endDate": "2016-12-17T09:53:12"},"Amsterdam": {"averageWeight": 8.801341363263074,"totalWeight": 7419.530769230771,"startDate": "2016-12-17T08:53:12","endDate": "2016-12-17T09:53:12"},"Paris": {"averageWeight": 16.29098414724969,"totalWeight": 11778.381538461528,"startDate": "2016-12-17T08:53:12","endDate": "2016-12-17T09:53:12"}}}
-          })
-        </script>
       </demo-snippet>
     </div>
   </body>
