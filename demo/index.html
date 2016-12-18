@@ -26,12 +26,13 @@
           <location-deviation-viewer
             title="Last Hour Deviation From Average"
             socket-data="[[socketData]]"
-            display-key="deviationPercentage"
+            first-key="lastHour"
+            second-key="allTime"
           ></location-deviation-viewer>
         </template>
         <script>
           demo.addEventListener('dom-change', function() {
-            demo.socketData = {"Amsterdam": {"allTime": {"averageWeight": 7.762771057728888,"startTime": "2016-01-01T00:00:00","endTime": "2016-12-18T06:26:53"},"lastHour": {"averageWeight": 29.97669302659962,"startTime": "2016-12-18T06:26:53","endTime": "2016-12-18T07:26:53"},"deviationPercentage": 286.1596948264212},"Paris": {"allTime": {"averageWeight": 25.486545497823975,"startTime": "2016-01-01T00:00:00","endTime": "2016-12-18T06:26:53"},"lastHour": {"averageWeight": 51.031514271891645,"startTime": "2016-12-18T06:26:53","endTime": "2016-12-18T07:26:53"},"deviationPercentage": 100.2292318362592},"Berlin": {"allTime": {"averageWeight": 22.96921021296395,"startTime": "2016-01-01T00:00:00","endTime": "2016-12-18T06:26:53"},"lastHour": {"averageWeight": 107.41650349650357,"startTime": "2016-12-18T06:26:53","endTime": "2016-12-18T07:26:53"},"deviationPercentage": 367.65431854455795}}
+            demo.socketData = {"lastHour": {"Berlin": {"averageWeight": 31.466508330379305,"totalWeight": 6828.232307692309,"startDate": "2016-12-17T09:18:52","endDate": "2016-12-17T10:18:52","startTime": "0918","endTime": "1018"},"Amsterdam": {"averageWeight": 5.066283542039363,"totalWeight": 3485.6030769230815,"startDate": "2016-12-17T09:18:52","endDate": "2016-12-17T10:18:52","startTime": "0918","endTime": "1018"},"Paris": {"averageWeight": 9.009034369885448,"totalWeight": 5927.944615384625,"startDate": "2016-12-17T09:18:52","endDate": "2016-12-17T10:18:52","startTime": "0918","endTime": "1018"}},"allTime": {"Berlin": {"averageWeight": 28.8828074059937,"totalWeight": 232795.42769230923,"startDate": "2016-01-01T00:00:00","endDate": "2016-12-17T09:18:52","startTime": "0918","endTime": "1018"},"Paris": {"averageWeight": 33.735988901530625,"totalWeight": 1439413.438461607,"startDate": "2016-01-01T00:00:00","endDate": "2016-12-17T09:18:52","startTime": "0918","endTime": "1018"},"Amsterdam": {"averageWeight": 8.431266306164867,"totalWeight": 211447.7276923087,"startDate": "2016-01-01T00:00:00","endDate": "2016-12-17T09:18:52","startTime": "0918","endTime": "1018"}}}
           })
         </script>
       </demo-snippet>
@@ -42,12 +43,13 @@
           <location-deviation-viewer
             title="Last Hour Growth"
             socket-data="[[socketData]]"
-            display-key="growth"
+            first-key="now"
+            second-key="lastHour"
           ></location-deviation-viewer>
         </template>
         <script>
           demoTwo.addEventListener('dom-change', function() {
-            demoTwo.socketData = {"Amsterdam":{"lastHour":448.63692307692304,"now":6404.196923076934,"growth":1327.478790455879},"Paris":{"lastHour":4663.501538461533,"now":16061.055384615389,"growth":244.3990583503454},"Berlin":{"lastHour":57.83692307692307,"now":7076.292307692311,"growth":12134.904506038203}}
+            demoTwo.socketData = {"now": {"Berlin": {"averageWeight": 14.378139768727998,"totalWeight": 4399.710769230767,"startDate": "2016-12-17T09:53:12","endDate": "2016-12-17T10:53:12"},"Amsterdam": {"averageWeight": 9.428938461538467,"totalWeight": 7543.150769230773,"startDate": "2016-12-17T09:53:12","endDate": "2016-12-17T10:53:12"},"Paris": {"averageWeight": 12.373891524025572,"totalWeight": 9230.923076923076,"startDate": "2016-12-17T09:53:12","endDate": "2016-12-17T10:53:12"}},"lastHour": {"Berlin": {"averageWeight": 41.54850368809267,"totalWeight": 12132.163076923061,"startDate": "2016-12-17T08:53:12","endDate": "2016-12-17T09:53:12"},"Amsterdam": {"averageWeight": 8.801341363263074,"totalWeight": 7419.530769230771,"startDate": "2016-12-17T08:53:12","endDate": "2016-12-17T09:53:12"},"Paris": {"averageWeight": 16.29098414724969,"totalWeight": 11778.381538461528,"startDate": "2016-12-17T08:53:12","endDate": "2016-12-17T09:53:12"}}}
           })
         </script>
       </demo-snippet>

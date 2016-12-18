@@ -140,15 +140,20 @@
         },
 
         socketData: {
-          type: Object
+          type: Object,
+          value: {}
         },
 
         percentage: {
           type: Array,
-          computed: '_computePercentage(selectedLocation, socketData.*, displayKey)'
+          computed: '_computePercentage(selectedLocation, socketData.*, firstKey, secondKey)'
         },
 
-        displayKey: {
+        firstKey: {
+          type: String
+        },
+
+        secondKey: {
           type: String
         },
 
@@ -194,11 +199,19 @@
         this.selectedLocation = evt.target.value;
       },
 
-      _computePercentage: function(selectedLocation, socketDataChange, displayKey) {
+      _computePercentage: function(selectedLocation, socketDataChange, firstKey, secondKey) {
+
         var socketData = socketDataChange.base;
-        if(!displayKey || !selectedLocation || !socketData) return;
-        if(!socketData[selectedLocation] || !socketData[selectedLocation][displayKey]) return;
-        return parseFloat(socketData[selectedLocation][displayKey].toFixed(1));
+        if(!firstKey || !secondKey || !selectedLocation || !socketData) return;
+
+        if(! (socketData[firstKey] && socketData[secondKey]) ) return;
+
+        var currentTotal = socketData[firstKey][selectedLocation].totalWeight;
+        var allTimeTotal = socketData[secondKey][selectedLocation].totalWeight;
+
+        var percentage = (currentTotal / allTimeTotal * 100).toFixed(1);
+
+        return percentage;
       },
 
       _computeBackgroundColor: function(percentage) {
