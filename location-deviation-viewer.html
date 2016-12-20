@@ -162,10 +162,10 @@
 
         if(! (socketData[firstKey] && socketData[secondKey]) ) return;
 
-        var currentTotal = socketData[firstKey][selectedLocation].totalWeight;
-        var allTimeTotal = socketData[secondKey][selectedLocation].totalWeight;
+        var currentAverage = socketData[firstKey][selectedLocation].averageWeight;
+        var allTimeAverage = socketData[secondKey][selectedLocation].averageWeight;
 
-        var percentage = (currentTotal / allTimeTotal * 100).toFixed(1);
+        var percentage = ((currentAverage / allTimeAverage * 100) - 100).toFixed(1);
 
         return percentage;
       },
